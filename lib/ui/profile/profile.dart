@@ -21,6 +21,7 @@ class ProfilePage extends StatelessWidget {
         children: [
           const SizedBox(height: 15),
           avatarName(),
+          const SizedBox(height: 15),
           const Divider(
             height: 1,
           ),
@@ -136,8 +137,12 @@ class ProfilePage extends StatelessWidget {
             height: 80,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: CachedNetworkImageProvider(Strings.defaultAvatar),
+                image: CachedNetworkImageProvider(
+                  userCtrl.user.value?.avatar ?? Strings.defaultAvatar,
+                ),
+                fit: BoxFit.cover,
               ),
+              color: Colors.grey[200],
               shape: BoxShape.circle,
             ),
           ),
