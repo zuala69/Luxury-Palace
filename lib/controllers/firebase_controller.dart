@@ -51,28 +51,6 @@ class FirebaseController extends GetxController {
   }
 
   Stream<QuerySnapshot<Message>> getMessages(String userId) {
-    store
-        .collection('messages')
-        .where(
-          "chatterIds",
-          isEqualTo: combineUids(
-            uid()!,
-            userId,
-          ),
-        )
-        .orderBy("sentAt", descending: true)
-        .withConverter<Message>(
-          fromFirestore: (data, snap) {
-            return Message.fromJson(data.data()!);
-          },
-          toFirestore: (data, something) {
-            return data.toJson();
-          },
-        )
-        .get()
-        .then((value) {
-          log("Getting messages senderId=${uid()} receiverId=$userId :${value.docs.length}");
-        });
     final snap = store
         .collection('messages')
         .where(
@@ -82,6 +60,7 @@ class FirebaseController extends GetxController {
             userId,
           ),
         )
+        .orderBy("sentAt", descending: true)
         .withConverter<Message>(
       fromFirestore: (data, snap) {
         return Message.fromJson(data.data()!);

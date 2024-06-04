@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luxury_guide/controllers/firebase_controller.dart';
+import 'package:luxury_guide/utils/colors.dart';
 import 'package:luxury_guide/utils/strings.dart';
 
 import '../../controllers/user_controller.dart';
@@ -15,7 +16,12 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: const BackButton(
+          color: Colors.white,
+        ),
+        backgroundColor: AppColors.primary,
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         children: [
