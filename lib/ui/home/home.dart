@@ -21,10 +21,14 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               Get.to(() => ProfilePage());
             },
+            iconSize: 35,
             icon: const Icon(
               Icons.account_circle_outlined,
             ),
-          )
+          ),
+          const SizedBox(
+            width: 15,
+          ),
         ],
       ),
       body: StreamBuilder(
@@ -66,8 +70,20 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    title: Text(user.name),
-                    subtitle: Text(user.occupation ?? ""),
+                    title: Text(
+                      user.name,
+                      style: GoogleFonts.spectral(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    subtitle: Text(
+                      user.occupation ?? "",
+                      style: GoogleFonts.spectral(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
                   );
                 });
           }

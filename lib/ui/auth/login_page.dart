@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(),
             const Spacer(),
             Text(
-              "Luxury Palace",
+              "Luxury Guide",
               style: GoogleFonts.yellowtail(
                 fontSize: 55,
                 color: Colors.white,

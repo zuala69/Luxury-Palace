@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:luxury_guide/controllers/firebase_controller.dart';
 import 'package:luxury_guide/utils/functions.dart';
@@ -15,6 +16,18 @@ class UserController extends GetxController {
   void onReady() {
     getUser();
     super.onReady();
+  }
+
+  void saveOccupation(String newValue) {
+    user.update((val) {
+      val?.occupation = newValue;
+    });
+    FirebaseController().to.store.collection("users").doc(uid()).set(
+      {"occupation": newValue},
+      SetOptions(
+        merge: true,
+      ),
+    );
   }
 
   void getUser() {

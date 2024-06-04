@@ -46,7 +46,6 @@ class MessageInput extends StatelessWidget {
             onPressed: () {
               if (txtCtrl.text.isNotEmpty) {
                 final id = DateTime.now().millisecondsSinceEpoch.toString();
-
                 final msg = Message(
                   id: id,
                   text: txtCtrl.text,

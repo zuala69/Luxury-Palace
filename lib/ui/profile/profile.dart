@@ -28,7 +28,47 @@ class ProfilePage extends StatelessWidget {
             icon: Icons.list,
             title: "Occupation",
             subtitle: "Your details",
-            onTap: () {},
+            onTap: () async {
+              final ctrl = TextEditingController();
+              ctrl.text = UserController().to.user.value?.occupation ?? "";
+              Get.dialog(Material(
+                color: Colors.transparent,
+                child: AlertDialog.adaptive(
+                  title: const Text('Occupation'),
+                  content: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: TextField(
+                      controller: ctrl,
+                      autofocus: true,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        UserController().to.saveOccupation(ctrl.text);
+                        Navigator.of(context).pop(true);
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+              ));
+            },
           ),
           const SubDivider(),
           iconTextCard(
